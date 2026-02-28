@@ -1,853 +1,321 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assured Play Surfaces | Premium Infrastructure & Safety Solutions</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #ffffff;
-        }
-
-        .hero-mesh {
-            background-color: #0f172a;
-            background-image: radial-gradient(at 0% 0%, hsla(217, 100%, 13%, 1) 0, transparent 50%),
-                radial-gradient(at 50% 0%, hsla(215, 96%, 10%, 1) 0, transparent 50%),
-                radial-gradient(at 100% 0%, hsla(220, 100%, 20%, 1) 0, transparent 50%);
-        }
-
-        .service-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            overflow: hidden;
-        }
-
-        .service-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 40px 80px -15px rgba(15, 23, 42, 0.15);
-        }
-
-        .service-card:hover img {
-            transform: scale(1.08);
-        }
-
-        .marquee-container {
-            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-        }
-
-        @keyframes marquee {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        .animate-marquee {
-            display: flex;
-            width: max-content;
-            animation: marquee 40s linear infinite;
-        }
-
-        .estimate-badge {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-        }
-
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Invoice Auditor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.6.82/pdf.min.mjs" type="module"></script>
+  <style>
+    body { font-family: Inter, system-ui, sans-serif; }
+    .card { @apply bg-white rounded-2xl shadow-sm border border-slate-200; }
+  </style>
 </head>
-
-<body class="text-slate-900 overflow-x-hidden selection:bg-blue-100 selection:text-blue-900">
-
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full z-[100] transition-all duration-500 py-6 px-6 bg-transparent">
-        <div
-            class="max-w-7xl mx-auto flex justify-between items-center bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-2xl px-6 py-3">
-            <div class="flex items-center space-x-3 cursor-pointer">
-                <img src="logo1.png" alt="i2SERVICES Logo" class="h-20 w-auto object-contain" />
-            </div>
-
-            <div class="hidden md:flex items-center space-x-10">
-                <div class="flex space-x-8 text-[11px] font-bold uppercase tracking-widest text-white/90">
-                    <a href="#home" class="hover:text-blue-400 transition">Home</a>
-                    <a href="#services" class="hover:text-blue-400 transition">Services</a>
-                    <a href="#estimator" class="hover:text-blue-400 transition">Estimator</a>
-                    <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
-                </div>
-                <a href="https://wa.me/7289910884" target="_blank" rel="noopener noreferrer"
-                    class="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 active:scale-95">
-                    Get Started
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero-mesh relative min-h-screen flex items-center pt-20 overflow-hidden">
-        <!-- Background Decor -->
-        <div class="absolute inset-0 opacity-30 mix-blend-overlay">
-            <img src="https://images.unsplash.com/photo-1503387762-592dea58ef21?auto=format&fit=crop&q=80&w=2000"
-                class="w-full h-full object-cover" alt="Blueprint Grid">
-        </div>
-
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
-            <div class="space-y-8">
-                <div
-                    class="inline-flex items-center space-x-3 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-1.5">
-                    <span class="flex h-2 w-2">
-                        <span
-                            class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-blue-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                    </span>
-                    <span class="text-blue-400 text-[10px] font-bold uppercase tracking-widest">ISO 9001:2015 Certified
-                        Solutions</span>
-                </div>
-
-                <h1 class="text-6xl md:text-8xl font-extrabold text-white leading-[0.95] tracking-tighter">
-                    Built for <br><span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Performance.</span>
-                    <br>Engineered for Safety.
-                </h1>
-
-                <p class="text-slate-400 text-lg max-w-lg leading-relaxed font-medium">
-                    From FIFA-standard sports arenas to high-tensile invisible safety grills. We deliver
-                    industrial-grade excellence to India's most iconic enterprises.
-                </p>
-
-                <div class="flex flex-wrap gap-5 pt-4">
-                    <button onclick="document.getElementById('services').scrollIntoView()"
-                        class="px-10 py-5 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all flex items-center shadow-2xl shadow-blue-600/30 group">
-                        Explore Portfolio
-                        <i data-lucide="arrow-right"
-                            class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
-                    </button>
-                    <button onclick="openEstimatorPopup()"
-                        class="px-10 py-5 bg-white/5 text-white border border-white/10 font-bold rounded-2xl hover:bg-white/10 transition-all backdrop-blur-md">
-                        📊 Open Quick Estimator
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-3 gap-8 pt-8 border-t border-white/5">
-                    <div>
-                        <p class="text-3xl font-black text-white">1000+</p>
-                        <p class="text-xs text-slate-500 uppercase tracking-widest font-bold">Projects Done</p>
-                    </div>
-                    <div>
-                        <p class="text-3xl font-black text-white">12+</p>
-                        <p class="text-xs text-slate-500 uppercase tracking-widest font-bold">Years Exp</p>
-                    </div>
-                    <div>
-                        <p class="text-3xl font-black text-white">100%</p>
-                        <p class="text-xs text-slate-500 uppercase tracking-widest font-bold">Safety Record</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="hidden lg:block relative">
-                <div class="relative z-20 space-y-4">
-                    <div class="grid grid-cols-12 gap-4">
-                        <div class="col-span-7">
-                            <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&q=80&w=800"
-                                class="rounded-[2.5rem] shadow-2xl border border-white/10 w-full h-80 object-cover"
-                                alt="Sports Infrastructure">
-                        </div>
-                        <div class="col-span-5 pt-12">
-                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=600"
-                                class="rounded-[2.5rem] shadow-2xl border border-white/10 w-full h-64 object-cover"
-                                alt="Safety Grills">
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-12 gap-4">
-                        <div class="col-span-5">
-                            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=600"
-                                class="rounded-[2.5rem] shadow-2xl border border-white/10 w-full h-64 object-cover"
-                                alt="Hygiene">
-                        </div>
-                        <div class="col-span-7 -mt-16">
-                            <img src="https://gameflixindia.com/wp-content/uploads/2025/05/Crick.png"
-                                class="rounded-[2.5rem] shadow-2xl border border-white/10 w-full h-80 object-cover"
-                                alt="Construction">
-                        </div>
-                    </div>
-                </div>
-                <!-- Glow Effect -->
-                <div class="absolute -top-20 -right-20 w-96 h-96 bg-blue-600/20 blur-[120px] rounded-full"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Client Marquee -->
-    <section class="py-16 bg-white border-b border-slate-100 marquee-container overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 mb-8 text-center">
-            <span class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Trusted by Global
-                Leaders</span>
-        </div>
-        <div class="animate-marquee grayscale opacity-40 hover:opacity-100 transition-opacity">
-            <div class="flex space-x-24 items-center px-12">
-                <span class="text-3xl font-black text-slate-900 tracking-tighter uppercase">Amazon</span>
-                <span class="text-3xl font-black text-slate-900 tracking-tighter uppercase">Tata Motors</span>
-                <span class="text-3xl font-black text-slate-900 tracking-tighter uppercase">Flipkart</span>
-                <span class="text-3xl font-black text-slate-900 tracking-tighter uppercase">NTPC</span>
-                <span class="text-3xl font-black text-slate-900 tracking-tighter uppercase">Delhivery</span>
-                <span class="text-3xl font-black text-slate-900 tracking-tighter uppercase">Reliance</span>
-                <span class="text-3xl font-black text-slate-900 tracking-tighter uppercase">Monte Carlo</span>
-            </div>
-            <div class="flex space-x-24 items-center px-12">
-                <span class="text-3xl font-black text-slate-900 tracking-tighter uppercase">Amazon</span>
-                <span class="text-3xl font-black text-slate-900 tracking-tighter uppercase">Tata Motors</span>
-                <span class="text-3xl font-black text-slate-900 tracking-tighter uppercase">Flipkart</span>
-                <span class="text-3xl font-black text-slate-900 tracking-tighter uppercase">NTPC</span>
-                <span class="text-3xl font-black text-slate-900 tracking-tighter uppercase">Delhivery</span>
-                <span class="text-3xl font-black text-slate-900 tracking-tighter uppercase">Reliance</span>
-                <span class="text-3xl font-black text-slate-900 tracking-tighter uppercase">Monte Carlo</span>
-            </div>
-        </div>
-    </section>
-    <section id="services" class="py-32 px-6 bg-slate-50">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
-                <div class="max-w-2xl">
-                    <span class="text-blue-600 font-black uppercase tracking-widest text-[11px] mb-4 block">Our
-                        Expertise</span>
-                    <h2 class="text-5xl md:text-6xl font-black text-slate-900 tracking-tight leading-none">Specialized
-                        <br>Infrastructural Vertical.
-                    </h2>
-                </div>
-                <p class="text-slate-500 max-w-xs text-sm font-medium leading-relaxed">
-                    Customized engineering for diverse requirements—from residential safety to industrial hygiene.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                <div
-                    class="service-card group bg-slate-900 rounded-[2rem] shadow-xl overflow-hidden flex flex-col text-white">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://mspace.in/wp-content/uploads/2025/04/Usage-of-Invisible-Grill.webp"
-                            class="w-full h-full object-cover opacity-80" alt="Invisible Grill">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1">
-                        <h4 class="text-lg font-bold mb-2">Invisible Grill</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-4">Marine-grade 316 stainless steel wires
-                            for safety without blocking views.</p>
-                        <i data-lucide="shield" class="w-5 h-5 text-blue-400"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="service-card group bg-slate-900 rounded-[2rem] shadow-xl overflow-hidden flex flex-col text-white">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://m.media-amazon.com/images/I/81xmc3NmkjL._AC_UF1000,1000_QL80_.jpg"
-                            class="w-full h-full object-cover opacity-80" alt="Bird Netting">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1">
-                        <h4 class="text-lg font-bold mb-2">Bird Netting</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-4">UV Stabilized heavy-duty HDPE nets for
-                            complete
-                            protection.</p>
-                        <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-400"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="service-card group bg-slate-900 rounded-[2rem] shadow-xl overflow-hidden flex flex-col text-white">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://turftown.s3.ap-south-1.amazonaws.com/super_admin/tt-1727768803485.webp"
-                            class="w-full h-full object-cover opacity-80" alt="Football Turf">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1">
-                        <h4 class="text-lg font-bold mb-2">Football Turf</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-4">FIFA standard artificial grass for
-                            high-performance play.
-                        </p>
-                        <i data-lucide="activity" class="w-5 h-5 text-blue-400"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="service-card group bg-slate-900 rounded-[2rem] shadow-xl overflow-hidden flex flex-col text-white">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&q=80&w=800"
-                            class="w-full h-full object-cover opacity-80" alt="Cricket Turf">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1">
-                        <h4 class="text-lg font-bold mb-2">Cricket Turf</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-4">Specialized pitch mats and perimeter turf
-                            for cricket
-                            nets.</p>
-                        <i data-lucide="target" class="w-5 h-5 text-blue-400"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="service-card group bg-slate-900 rounded-[2rem] shadow-xl overflow-hidden flex flex-col text-white">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&q=80&w=800"
-                            class="w-full h-full object-cover opacity-80" alt="Multi Sports Turf">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1">
-                        <h4 class="text-lg font-bold mb-2">Multi Sports Turf</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-4">Versatile flooring for hockey, football,
-                            and athletics.
-                        </p>
-                        <i data-lucide="layers" class="w-5 h-5 text-blue-400"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="service-card group bg-slate-900 rounded-[2rem] shadow-xl overflow-hidden flex flex-col text-white">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://t3.ftcdn.net/jpg/04/22/84/12/360_F_422841241_OR69MNhNG3Sxl6pmrKwuoBZPaZpZLt1a.jpg"
-                            class="w-full h-full object-cover opacity-80" alt="Volleyball Court">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1">
-                        <h4 class="text-lg font-bold mb-2">Volleyball Court</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-4">Professional court marking and
-                            shock-absorbent flooring.
-                        </p>
-                        <i data-lucide="circle-dot" class="w-5 h-5 text-blue-400"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="service-card group bg-slate-900 rounded-[2rem] shadow-xl overflow-hidden flex flex-col text-white">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&fit=crop&q=80&w=800"
-                            class="w-full h-full object-cover opacity-80" alt="Badminton Court">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1">
-                        <h4 class="text-lg font-bold mb-2">Badminton Court</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-4">Synthetic BWF-standard flooring with
-                            anti-skid
-                            properties.</p>
-                        <i data-lucide="wind" class="w-5 h-5 text-blue-400"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="service-card group bg-slate-900 rounded-[2rem] shadow-xl overflow-hidden flex flex-col text-white">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1692288720754-743fbd1f2155?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHRlbm5pcyUyMGNvdXJ0JTIwYmFja2dyb3VuZHxlbnwwfHwwfHx8MA%3D%3D"
-                            class="w-full h-full object-cover opacity-80" alt="Tennis Court">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1">
-                        <h4 class="text-lg font-bold mb-2">Tennis Court</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-4">Acrylic synthetic hard court surfaces for
-                            professional
-                            play.</p>
-                        <i data-lucide="award" class="w-5 h-5 text-blue-400"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="service-card group bg-slate-900 rounded-[2rem] shadow-xl overflow-hidden flex flex-col text-white">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://t3.ftcdn.net/jpg/03/85/14/30/360_F_385143079_GkXacgm3YCbKi3p7klrYG2blkW8JT2iZ.jpg"
-                            class="w-full h-full object-cover opacity-80" alt="Basketball Court">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1">
-                        <h4 class="text-lg font-bold mb-2">Basketball Court</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-4">Outdoor and indoor resilient flooring for
-                            high impact.
-                        </p>
-                        <i data-lucide="dribbble" class="w-5 h-5 text-blue-400"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="service-card group bg-slate-900 rounded-[2rem] shadow-xl overflow-hidden flex flex-col text-white">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://m.media-amazon.com/images/I/51kPDCo9doL._AC_UF894,1000_QL80_.jpg"
-                            class="w-full h-full object-cover" alt="Mosquito Mesh">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1">
-                        <h4 class="text-lg font-bold mb-2">Mosquito Mesh</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-4">Space-saving retractable zigzag insect
-                            screens.</p>
-                        <i data-lucide="wind" class="w-5 h-5 text-blue-400"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="service-card group bg-slate-900 rounded-[2rem] shadow-xl overflow-hidden flex flex-col text-white">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://m.media-amazon.com/images/I/61uOUnQIjXL._AC_UF894,1000_QL80_.jpg"
-                            class="w-full h-full object-cover opacity-80" alt="Smart Hanger">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1">
-                        <h4 class="text-lg font-bold mb-2">Smart Hanger</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-4">Ceiling-mounted pulley systems for
-                            balcony space.</p>
-                        <i data-lucide="arrow-up-circle" class="w-5 h-5 text-blue-400"></i>
-                    </div>
-                </div>
-
-                <div
-                    class="service-card group bg-slate-900 rounded-[2rem] shadow-xl overflow-hidden flex flex-col text-white">
-                    <div class="h-48 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?auto=format&fit=crop&q=80&w=800"
-                            class="w-full h-full object-cover opacity-80" alt="Project Consultancy">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent">
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1">
-                        <h4 class="text-lg font-bold mb-2">Project Consultancy</h4>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-4">Expert planning and engineering for
-                            sports
-                            infrastructure.</p>
-                        <i data-lucide="users" class="w-5 h-5 text-blue-400"></i>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <section id="why-choose-us" class="py-32 px-6 bg-white relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1" />
-                    </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
-        </div>
-
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="text-center max-w-3xl mx-auto mb-20">
-                <span class="text-blue-600 font-black uppercase tracking-[0.3em] text-[11px] mb-4 block">The i2
-                    Advantage</span>
-                <h2 class="text-5xl md:text-6xl font-black text-slate-900 tracking-tight leading-none mb-6">
-                    Why Industry Leaders <br>Trust i2SERVICES.
-                </h2>
-                <p class="text-slate-500 font-medium leading-relaxed">
-                    We combine precision engineering with premium materials to deliver safety and infrastructure
-                    solutions that stand the test of time.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div
-                    class="group p-8 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500">
-                    <div
-                        class="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform">
-                        <i data-lucide="microscope" class="w-8 h-8"></i>
-                    </div>
-                    <h4 class="text-xl font-extrabold text-slate-900 mb-4 tracking-tight">Engineering Precision</h4>
-                    <p class="text-slate-500 text-sm leading-relaxed">
-                        Every project is backed by rigorous technical assessment and site-specific blueprints to ensure
-                        maximum durability.
-                    </p>
-                </div>
-
-                <div
-                    class="group p-8 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500">
-                    <div
-                        class="w-16 h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform">
-                        <i data-lucide="shield-check" class="w-8 h-8"></i>
-                    </div>
-                    <h4 class="text-xl font-extrabold text-slate-900 mb-4 tracking-tight">Certified Materials</h4>
-                    <p class="text-slate-500 text-sm leading-relaxed">
-                        From Marine-grade 316 Stainless Steel to FIFA-standard turf fibers, we only use ISO-certified
-                        industrial components.
-                    </p>
-                </div>
-
-                <div
-                    class="group p-8 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500">
-                    <div
-                        class="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform">
-                        <i data-lucide="zap" class="w-8 h-8"></i>
-                    </div>
-                    <h4 class="text-xl font-extrabold text-slate-900 mb-4 tracking-tight">Rapid Deployment</h4>
-                    <p class="text-slate-500 text-sm leading-relaxed">
-                        Our specialized installation teams ensure turn-key delivery with zero safety compromises and
-                        minimal site downtime.
-                    </p>
-                </div>
-
-                <div
-                    class="group p-8 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500">
-                    <div
-                        class="w-16 h-16 bg-slate-900 text-white rounded-2xl flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform">
-                        <i data-lucide="map-pin" class="w-8 h-8"></i>
-                    </div>
-                    <h4 class="text-xl font-extrabold text-slate-900 mb-4 tracking-tight">Pan-India Support</h4>
-                    <p class="text-slate-500 text-sm leading-relaxed">
-                        With headquarters in New Delhi and a robust service network, we support large-scale
-                        infrastructure across India.
-                    </p>
-                </div>
-            </div>
-
-            <div class="mt-20 p-1 bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-12">
-                <div class="text-center">
-                    <p class="text-4xl font-black text-slate-900 mb-1">98%</p>
-                    <p class="text-[10px] font-bold uppercase tracking-widest text-blue-600">Client Retention</p>
-                </div>
-                <div class="text-center">
-                    <p class="text-4xl font-black text-slate-900 mb-1">24h</p>
-                    <p class="text-[10px] font-bold uppercase tracking-widest text-blue-600">Response Time</p>
-                </div>
-                <div class="text-center">
-                    <p class="text-4xl font-black text-slate-900 mb-1">10yr+</p>
-                    <p class="text-[10px] font-bold uppercase tracking-widest text-blue-600">Warranty Coverage</p>
-                </div>
-                <div class="text-center">
-                    <p class="text-4xl font-black text-slate-900 mb-1">Zero</p>
-                    <p class="text-[10px] font-bold uppercase tracking-widest text-blue-600">Safety Incidents</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Contact Section -->
-    <section id="contact" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-center">
-            <div>
-                <span class="text-blue-600 font-black uppercase tracking-widest text-[11px] mb-4 block">Let's
-                    Talk</span>
-                <h3 class="text-5xl font-extrabold mb-8 tracking-tight leading-tight text-slate-900">Partner with the
-                    <br><span class="text-blue-600">Infrastructure Experts</span>.
-                </h3>
-                <p class="text-slate-500 mb-12 text-lg leading-relaxed">From initial blueprint to final safety
-                    certification, we manage every phase of your project.</p>
-                <div class="grid gap-8">
-                    <div
-                        class="flex items-center space-x-6 p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:border-blue-200 transition-all">
-                        <div
-                            class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/30">
-                            <i data-lucide="phone" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <p class="text-[10px] text-slate-400 font-black uppercase tracking-widest mb-1"> Direct
-                                Sales
-                            </p>
-                            <p class="font-extrabold text-xl">+91 7289910884 <br> +91 9354036537</p>
-                        </div>
-                    </div>
-                    <div
-                        class="flex items-center space-x-6 p-6 rounded-3xl bg-slate-50 border border-slate-100 hover:border-blue-200 transition-all">
-                        <div
-                            class="w-14 h-14 bg-slate-900 text-white rounded-2xl flex items-center justify-center shadow-lg">
-                            <i data-lucide="mail" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <p class="text-[10px] text-slate-400 font-black uppercase tracking-widest mb-1">Inquiry Mail
-                            </p>
-                            <p class="font-extrabold text-xl">Ceo.i2services@gmail.com</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div
-                class="bg-white p-12 rounded-[3.5rem] border border-slate-200 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] relative">
-                <form id="project-form" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="space-y-2">
-                            <label
-                                class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Name</label>
-                            <input name="name" type="text" placeholder="Full Name" required
-                                class="w-full bg-slate-50 p-5 rounded-2xl border border-slate-100 outline-none focus:border-blue-600 transition-all font-medium">
-                        </div>
-                        <div class="space-y-2">
-                            <label
-                                class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Company</label>
-                            <input name="company" type="text" placeholder="Org Name"
-                                class="w-full bg-slate-50 p-5 rounded-2xl border border-slate-100 outline-none focus:border-blue-600 transition-all font-medium">
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Contact
-                                Info</label>
-                            <input name="contact" type="text" placeholder="Email or Phone" required
-                                class="w-full bg-slate-50 p-5 rounded-2xl border border-slate-100 outline-none focus:border-blue-600 transition-all font-medium">
-                        </div>
-                    </div>
-
-                    <div class="space-y-2">
-                        <label
-                            class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Requirement</label>
-                        <select name="requirement"
-                            class="w-full bg-slate-50 p-5 rounded-2xl border border-slate-100 outline-none focus:border-blue-600 transition-all font-medium appearance-none">
-                            <option>Commercial Sports Turf</option>
-                            <option>Safety Grills / Netting</option>
-                            <option>Industrial Sanitization</option>
-                            <option>Custom Engineering</option>
-                        </select>
-                    </div>
-
-                    <div class="space-y-2">
-                        <label
-                            class="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Message</label>
-                        <textarea name="message" placeholder="Describe your project site and area..."
-                            class="w-full bg-slate-50 p-5 rounded-2xl border border-slate-100 outline-none h-32 focus:border-blue-600 transition-all font-medium resize-none"></textarea>
-                    </div>
-
-                    <button type="submit"
-                        class="w-full py-6 bg-blue-600 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-2xl shadow-blue-500/40 hover:bg-blue-700 active:scale-95 transition-all">
-                        Initialize Project
-                    </button>
-                </form>
-            </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 text-white py-24 px-6 border-t border-white/5 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-16 relative z-10">
-            <div class="md:col-span-2 space-y-8">
-                <div class="flex items-center space-x-3 cursor-pointer">
-                    <img src="logo1.png" alt="i2SERVICES Logo" class="h-20 w-auto object-contain" />
-                </div>
-                <p class="text-slate-500 max-w-sm text-sm leading-relaxed">
-                    India's leading specialized infrastructure partner providing turn-key solutions for safety, sports,
-                    and hygiene across industrial and residential sectors.
-                </p>
-                <div class="flex space-x-5">
-                    <a href="https://www.instagram.com/i2services_?igsh=azJhMG1xYXNxNW1j" target="_blank"
-                        rel="noopener noreferrer"
-                        class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer group">
-                        <i data-lucide="instagram" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
-                    </a>
-                    <a href="https://www.youtube.com/@i2services" target="_blank" rel="noopener noreferrer"
-                        class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer group">
-                        <i data-lucide="youtube" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
-                    </a>
-                    <a href="#"
-                        class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-blue-600 transition-colors cursor-pointer group">
-                        <i data-lucide="facebook" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="space-y-6">
-                <h5 class="text-[11px] font-black uppercase tracking-[0.3em] text-blue-500">Quick Links</h5>
-                <ul class="space-y-4 text-sm font-medium text-slate-400">
-                    <li><a href="#services" class="hover:text-white transition">Core Services</a></li>
-                    <li><a href="#estimator" class="hover:text-white transition">Project Estimator</a></li>
-                    <li><a href="#" class="hover:text-white transition">Technical Specs</a></li>
-                    <li><a href="#" class="hover:text-white transition">Client Portfolio</a></li>
-                </ul>
-            </div>
-
-            <div class="space-y-6">
-                <h5 class="text-[11px] font-black uppercase tracking-[0.3em] text-blue-500">Legal</h5>
-                <p class="text-[10px] text-slate-500 leading-relaxed">
-                    GSTIN: 07ISAPS6720M1Z6 <br>
-                    © 2026 Assured Play Surfaces. <br>
-                    All Rights Reserved. <br><br>
-                    Registered HQ: <br>
-                    1502, 15th Floor Devika Tower Nehru Place, New Delhi - 110019.
-                </p>
-            </div>
-        </div>
-        <!-- Decor -->
-        <div
-            class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-600/50 to-transparent">
-        </div>
-    </footer>
-
-    <!-- AI ADVISOR CONTAINER -->
-    <div id="estimator-popup"
-        class="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-500">
-
-        <div class="bg-white w-full max-w-xl rounded-[2.5rem] shadow-2xl overflow-hidden relative">
-            <div class="p-8 bg-slate-900 text-white flex justify-between items-center">
-                <div class="flex items-center space-x-4">
-                    <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
-                        <i data-lucide="calculator" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-black text-xl tracking-tight">Project Estimator</h3>
-                        <p class="text-[10px] text-blue-400 font-bold uppercase tracking-widest">Instant Quote Tool</p>
-                    </div>
-                </div>
-                <button onclick="closeEstimatorPopup()"
-                    class="w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center transition-all">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
-            </div>
-
-            <div class="p-10 space-y-8">
-                <div class="grid gap-6">
-                    <div class="space-y-2">
-                        <label class="block text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Select
-                            Service</label>
-                        <select id="pop-service"
-                            class="w-full bg-slate-50 border border-slate-200 p-5 rounded-2xl font-bold text-slate-900 outline-none focus:ring-2 focus:ring-blue-600 transition-all appearance-none">
-                            <option value="turf" data-rate="185">Sports Turf Installation (sq ft)</option>
-                            <option value="grill" data-rate="145">Invisible Grill (sq ft)</option>
-                            <option value="mesh" data-rate="210">Mosquito Mesh (sq ft)</option>
-                            <option value="bird" data-rate="40">Bird Netting (sq ft)</option>
-                        </select>
-                    </div>
-                    <div class="space-y-2">
-                        <label class="block text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Total
-                            Area (Sq. Ft.)</label>
-                        <input id="pop-area" type="number" placeholder="Enter square footage..."
-                            class="w-full bg-slate-50 border border-slate-200 p-5 rounded-2xl font-bold text-slate-900 outline-none focus:ring-2 focus:ring-blue-600 transition-all">
-                    </div>
-                </div>
-
-                <div class="bg-blue-50 rounded-3xl p-8 border border-blue-100 text-center">
-                    <p class="text-blue-600 text-[10px] font-black uppercase tracking-widest mb-2">Estimated Total</p>
-                    <h3 id="pop-result" class="text-5xl font-black text-slate-900 tracking-tighter">₹ 0.00</h3>
-                </div>
-
-                <div class="flex gap-4">
-                    <button onclick="calculatePopEstimate()"
-                        class="flex-1 py-5 bg-slate-900 text-white font-bold rounded-2xl hover:bg-blue-600 transition-all shadow-xl active:scale-95">
-                        Calculate Now
-                    </button>
-                    <a href="https://wa.me/7289910884"
-                        class="px-8 py-5 bg-emerald-500 text-white font-bold rounded-2xl hover:bg-emerald-600 transition-all flex items-center justify-center">
-                        <i data-lucide="message-circle" class="w-6 h-6 text-white"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+<body class="bg-slate-100 text-slate-900 min-h-screen">
+  <header class="bg-slate-900 text-white">
+    <div class="max-w-7xl mx-auto px-6 py-10">
+      <p class="uppercase tracking-[0.2em] text-xs text-emerald-300 font-semibold">Finance Automation Suite</p>
+      <h1 class="text-4xl md:text-5xl font-black mt-3">AI Invoice Auditor</h1>
+      <p class="mt-4 text-slate-300 max-w-3xl">Upload invoices from any vendor (PDF, image, scanned, or text), extract key fields, cross-check against contracts/rate cards, and flag overcharges, GST issues, duplicates, and mystery surcharges in minutes.</p>
     </div>
+  </header>
 
+  <main class="max-w-7xl mx-auto px-6 py-8 grid lg:grid-cols-12 gap-6">
+    <section class="lg:col-span-5 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-5">
+      <h2 class="text-xl font-bold">1) Upload & Extract</h2>
+      <input id="invoiceFile" type="file" accept=".pdf,.png,.jpg,.jpeg,.txt,.csv" class="block w-full text-sm" />
+      <button id="extractBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-xl">Run OCR + Extraction</button>
+      <p id="status" class="text-sm text-slate-600">Tip: For quick testing, click <span class="font-semibold">Load Demo Invoice</span>.</p>
+      <button id="demoBtn" class="w-full border border-slate-300 hover:bg-slate-100 font-semibold py-2.5 rounded-xl">Load Demo Invoice</button>
 
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbz_Qn12OApwpYSMcuUz8kjxImCRaEPcxBo0fWpCNx-308ChU59LRnfqqkiRpAAOeqGpug/exec'
+      <div>
+        <label for="rawText" class="block text-sm font-semibold mb-2">Extracted Invoice Text</label>
+        <textarea id="rawText" rows="14" class="w-full border border-slate-300 rounded-xl p-3 text-xs font-mono" placeholder="Extracted text will appear here..."></textarea>
+      </div>
+      <button id="auditBtn" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-xl">2) Audit Against Contracts</button>
+    </section>
 
-        const form = document.getElementById('project-form')
-        const btn = form.querySelector('button')
+    <section class="lg:col-span-7 space-y-6">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+        <h2 class="text-xl font-bold mb-4">Invoice Summary Dashboard</h2>
+        <div class="grid md:grid-cols-4 gap-4">
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+            <p class="text-xs uppercase tracking-wide text-slate-500">Invoice Total</p>
+            <p id="invoiceTotal" class="text-2xl font-black">₹0.00</p>
+          </div>
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+            <p class="text-xs uppercase tracking-wide text-slate-500">Expected Total</p>
+            <p id="expectedTotal" class="text-2xl font-black">₹0.00</p>
+          </div>
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+            <p class="text-xs uppercase tracking-wide text-slate-500">Potential Recovery</p>
+            <p id="overchargeTotal" class="text-2xl font-black text-rose-600">₹0.00</p>
+          </div>
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+            <p class="text-xs uppercase tracking-wide text-slate-500">Risk Flags</p>
+            <p id="flagCount" class="text-2xl font-black">0</p>
+          </div>
+        </div>
+      </div>
 
-        form.addEventListener('submit', e => {
-            e.preventDefault()
-            btn.disabled = true
-            btn.innerText = 'Initializing...'
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+        <h2 class="text-xl font-bold mb-4">Extracted Structured Data</h2>
+        <pre id="structuredOutput" class="bg-slate-900 text-emerald-300 rounded-xl p-4 text-xs overflow-auto max-h-64">No extraction yet.</pre>
+      </div>
 
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => {
-                    btn.innerText = '✓ Project Initialized'
-                    btn.classList.replace('bg-blue-600', 'bg-green-600') // Turn green on success
-                    form.reset()
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+        <h2 class="text-xl font-bold mb-4">Audit Findings</h2>
+        <div id="findings" class="space-y-3 text-sm">
+          <p class="text-slate-500">No audit run yet.</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-                    // Revert button after 3 seconds
-                    setTimeout(() => {
-                        btn.innerText = 'Initialize Project'
-                        btn.classList.replace('bg-green-600', 'bg-blue-600')
-                        btn.disabled = false
-                    }, 3000)
-                })
-                .catch(error => {
-                    alert('Error! Please check your connection.')
-                    btn.disabled = false
-                    btn.innerText = 'Initialize Project'
-                })
-        })
-        // Initialize Icons
-        lucide.createIcons();
+  <script type="module">
+    const CONTRACTS = {
+      "SwiftLogistics Pvt Ltd": {
+        gstin: "27AAECS9988L1ZQ",
+        rates: {
+          "line haul": 2200,
+          "fuel surcharge": 350,
+          "handling": 500
+        },
+        gstRate: 18,
+        hsn: ["996511", "996519"]
+      },
+      "Prime Raw Materials": {
+        gstin: "29AAICP4412R1ZT",
+        rates: {
+          "polymer resin": 82,
+          "packaging": 8
+        },
+        gstRate: 18,
+        hsn: ["390120", "392310"]
+      }
+    };
 
-        // 1. Popup Controls
-        function openEstimatorPopup() {
-            const modal = document.getElementById('estimator-popup');
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            modal.classList.add('opacity-100');
-        }
+    const HISTORICAL_INVOICES = [
+      { invoiceNo: "INV-2025-00108", vendor: "SwiftLogistics Pvt Ltd", total: 42350, date: "2025-05-04" },
+      { invoiceNo: "INV-2025-00109", vendor: "SwiftLogistics Pvt Ltd", total: 39850, date: "2025-05-11" },
+      { invoiceNo: "PRM-8872", vendor: "Prime Raw Materials", total: 102760, date: "2025-05-09" }
+    ];
 
-        function closeEstimatorPopup() {
-            const modal = document.getElementById('estimator-popup');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            modal.classList.remove('opacity-100');
-        }
+    const DEMO_TEXT = `Vendor: SwiftLogistics Pvt Ltd
+GSTIN: 27AAECS9988L1ZQ
+Invoice Number: INV-2025-00109
+Invoice Date: 2025-05-11
+HSN: 996511
+Line Item: Line Haul | Qty: 12 | Rate: 2350 | Amount: 28200
+Line Item: Fuel Surcharge | Qty: 12 | Rate: 420 | Amount: 5040
+Line Item: Handling | Qty: 4 | Rate: 500 | Amount: 2000
+Line Item: Peak Season Fee | Qty: 1 | Rate: 3000 | Amount: 3000
+Subtotal: 38240
+GST Rate: 12%
+GST Amount: 4588.8
+Invoice Total: 42828.8`;
 
-        // 2. Popup Calculation Logic
-        function calculatePopEstimate() {
-            const select = document.getElementById('pop-service');
-            const rate = parseFloat(select.options[select.selectedIndex].getAttribute('data-rate'));
-            const areaInput = document.getElementById('pop-area');
-            const area = parseFloat(areaInput.value);
-            const resultDisplay = document.getElementById('pop-result');
+    const statusEl = document.getElementById('status');
+    const rawTextEl = document.getElementById('rawText');
+    const structuredOutput = document.getElementById('structuredOutput');
+    const findingsEl = document.getElementById('findings');
+    const fileInput = document.getElementById('invoiceFile');
 
-            if (isNaN(area) || area <= 0) {
-                areaInput.focus();
-                return;
-            }
+    document.getElementById('demoBtn').addEventListener('click', () => {
+      rawTextEl.value = DEMO_TEXT;
+      statusEl.textContent = 'Demo invoice loaded. Click “Audit Against Contracts”.';
+    });
 
-            const total = rate * area;
+    document.getElementById('extractBtn').addEventListener('click', async () => {
+      const file = fileInput.files?.[0];
+      if (!file) {
+        statusEl.textContent = 'Please upload a file first.';
+        return;
+      }
 
-            // Simple Animate & Display
-            resultDisplay.innerText = `₹ ${total.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
+      statusEl.textContent = 'Extracting text...';
+      try {
+        const text = await extractText(file);
+        rawTextEl.value = text.trim();
+        statusEl.textContent = 'Extraction complete. Review text and run audit.';
+      } catch (error) {
+        statusEl.textContent = `Extraction failed: ${error.message}`;
+      }
+    });
 
-            // Add a little visual "pop" effect
-            resultDisplay.classList.add('text-blue-600', 'scale-105');
-            setTimeout(() => {
-                resultDisplay.classList.remove('text-blue-600', 'scale-105');
-            }, 300);
-        }
+    document.getElementById('auditBtn').addEventListener('click', () => {
+      const raw = rawTextEl.value;
+      if (!raw.trim()) {
+        statusEl.textContent = 'No text found. Upload or load demo invoice first.';
+        return;
+      }
 
-        // 3. Section Scroll Estimator Logic (The one already on your page)
-        function calculateEstimate() {
-            const select = document.getElementById('est-service');
-            const rate = parseFloat(select.options[select.selectedIndex].dataset.rate);
-            const area = parseFloat(document.getElementById('est-area').value);
-            const resultDisplay = document.getElementById('est-result');
+      const structured = parseInvoice(raw);
+      const audit = runAudit(structured);
+      render(structured, audit);
+      statusEl.textContent = 'Audit complete. Review flags and recovery amount.';
+    });
 
-            if (isNaN(area) || area <= 0) return;
+    function parseInvoice(text) {
+      const data = {
+        vendor: find(text, /Vendor\s*:\s*(.+)/i),
+        gstin: find(text, /GSTIN\s*:\s*([A-Z0-9]+)/i),
+        invoiceNo: find(text, /Invoice\s*(Number|No)\s*:\s*([A-Z0-9\-\/]+)/i, 2),
+        invoiceDate: find(text, /Invoice\s*Date\s*:\s*([\d\-\/]+)/i),
+        hsn: find(text, /HSN\s*:\s*(\d{4,8})/i),
+        gstRate: Number(find(text, /GST\s*Rate\s*:\s*(\d+(?:\.\d+)?)%?/i) || 0),
+        gstAmount: Number(find(text, /GST\s*Amount\s*:\s*([\d.]+)/i) || 0),
+        subtotal: Number(find(text, /Subtotal\s*:\s*([\d.]+)/i) || 0),
+        invoiceTotal: Number(find(text, /(Invoice\s*Total|Total\s*Amount)\s*:\s*([\d.]+)/i, 2) || 0),
+        items: []
+      };
 
-            const total = rate * area;
-            resultDisplay.innerText = `₹ ${total.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
-        }
-
-        // 4. Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 80) {
-                nav.classList.remove('py-6', 'bg-transparent');
-                nav.classList.add('py-3');
-            } else {
-                nav.classList.add('py-6', 'bg-transparent');
-                nav.classList.remove('py-3');
-            }
+      const lineRegex = /Line\s*Item\s*:\s*([^|\n]+)\|\s*Qty\s*:\s*([\d.]+)\|\s*Rate\s*:\s*([\d.]+)\|\s*Amount\s*:\s*([\d.]+)/gi;
+      let match;
+      while ((match = lineRegex.exec(text)) !== null) {
+        data.items.push({
+          description: match[1].trim(),
+          qty: Number(match[2]),
+          rate: Number(match[3]),
+          amount: Number(match[4])
         });
-    </script>
+      }
 
+      if (!data.subtotal && data.items.length) {
+        data.subtotal = round2(data.items.reduce((sum, item) => sum + item.amount, 0));
+      }
 
+      return data;
+    }
 
+    function runAudit(invoice) {
+      const findings = [];
+      const contract = CONTRACTS[invoice.vendor];
+      let expectedSubtotal = 0;
 
+      if (!contract) {
+        findings.push(makeFlag('high', 'Missing contract/rate card', `No contract profile found for vendor “${invoice.vendor || 'Unknown'}”.`));
+      }
 
+      for (const item of invoice.items) {
+        const key = item.description.toLowerCase().trim();
+        const contractRate = contract?.rates[key];
+
+        if (contractRate === undefined) {
+          findings.push(makeFlag('medium', 'Mystery surcharge', `Line item “${item.description}” is not present in approved rate card.`));
+          expectedSubtotal += item.amount;
+          continue;
+        }
+
+        const expectedAmount = round2(item.qty * contractRate);
+        expectedSubtotal += expectedAmount;
+
+        if (item.rate > contractRate) {
+          findings.push(makeFlag('high', 'Rate overcharge', `“${item.description}” billed at ₹${item.rate} vs contracted ₹${contractRate}. Potential excess: ₹${round2(item.amount - expectedAmount)}.`));
+        }
+
+        const recomputed = round2(item.qty * item.rate);
+        if (Math.abs(recomputed - item.amount) > 0.5) {
+          findings.push(makeFlag('medium', 'Calculation mismatch', `“${item.description}” line amount should be ₹${recomputed}, but invoice shows ₹${item.amount}.`));
+        }
+      }
+
+      const duplicate = HISTORICAL_INVOICES.find(h => h.invoiceNo === invoice.invoiceNo && h.vendor === invoice.vendor);
+      if (duplicate) {
+        findings.push(makeFlag('high', 'Possible duplicate invoice', `Invoice number ${invoice.invoiceNo} already exists in historical records dated ${duplicate.date}.`));
+      }
+
+      if (contract && invoice.gstRate && invoice.gstRate !== contract.gstRate) {
+        findings.push(makeFlag('high', 'GST rate mismatch', `Invoice GST is ${invoice.gstRate}% but contract expects ${contract.gstRate}%.`));
+      }
+
+      if (contract && invoice.hsn && !contract.hsn.includes(invoice.hsn)) {
+        findings.push(makeFlag('medium', 'HSN code mismatch', `HSN ${invoice.hsn} not found in approved codes (${contract.hsn.join(', ')}).`));
+      }
+
+      const expectedGst = round2(expectedSubtotal * ((contract?.gstRate || invoice.gstRate || 0) / 100));
+      const expectedTotal = round2(expectedSubtotal + expectedGst);
+      const billedTotal = invoice.invoiceTotal || round2(invoice.subtotal + invoice.gstAmount);
+      const overcharge = Math.max(0, round2(billedTotal - expectedTotal));
+
+      if (Math.abs((invoice.subtotal || 0) - round2(invoice.items.reduce((s, i) => s + i.amount, 0))) > 0.5) {
+        findings.push(makeFlag('medium', 'Subtotal mismatch', `Subtotal does not match sum of line items.`));
+      }
+
+      return { findings, expectedSubtotal, expectedGst, expectedTotal, billedTotal, overcharge };
+    }
+
+    function render(invoice, audit) {
+      structuredOutput.textContent = JSON.stringify(invoice, null, 2);
+      document.getElementById('invoiceTotal').textContent = formatINR(audit.billedTotal);
+      document.getElementById('expectedTotal').textContent = formatINR(audit.expectedTotal);
+      document.getElementById('overchargeTotal').textContent = formatINR(audit.overcharge);
+      document.getElementById('flagCount').textContent = String(audit.findings.length);
+
+      if (!audit.findings.length) {
+        findingsEl.innerHTML = '<p class="text-emerald-700 font-semibold">No discrepancies detected.</p>';
+        return;
+      }
+
+      const styleMap = {
+        high: { wrap: 'border-rose-200 bg-rose-50', title: 'text-rose-800', body: 'text-rose-900' },
+        medium: { wrap: 'border-amber-200 bg-amber-50', title: 'text-amber-800', body: 'text-amber-900' },
+        low: { wrap: 'border-blue-200 bg-blue-50', title: 'text-blue-800', body: 'text-blue-900' }
+      };
+
+      findingsEl.innerHTML = audit.findings.map(flag => {
+        const style = styleMap[flag.severity] || styleMap.low;
+        return `<div class="border ${style.wrap} rounded-xl p-4">
+          <p class="font-bold ${style.title}">${flag.type}</p>
+          <p class="${style.body} mt-1">${flag.message}</p>
+        </div>`;
+      }).join('');
+    }
+
+    function makeFlag(severity, type, message) {
+      return { severity, type, message };
+    }
+
+    function find(text, regex, group = 1) {
+      const m = text.match(regex);
+      return m ? m[group].trim() : '';
+    }
+
+    function round2(val) {
+      return Math.round((val + Number.EPSILON) * 100) / 100;
+    }
+
+    function formatINR(value) {
+      return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 }).format(value || 0);
+    }
+
+    async function extractText(file) {
+      const name = file.name.toLowerCase();
+      if (name.endsWith('.txt') || name.endsWith('.csv')) {
+        return await file.text();
+      }
+
+      if (name.endsWith('.pdf')) {
+        const { getDocument } = await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.6.82/pdf.min.mjs');
+        const bytes = await file.arrayBuffer();
+        const pdf = await getDocument({ data: bytes }).promise;
+        let text = '';
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const content = await page.getTextContent();
+          text += content.items.map(item => item.str).join(' ') + '\n';
+        }
+        return text;
+      }
+
+      if (name.endsWith('.png') || name.endsWith('.jpg') || name.endsWith('.jpeg')) {
+        const worker = await import('https://cdn.jsdelivr.net/npm/tesseract.js@5.1.0/dist/tesseract.esm.min.js');
+        const { data } = await worker.recognize(file, 'eng');
+        return data.text;
+      }
+
+      throw new Error('Unsupported format. Upload PDF, image, TXT, or CSV.');
+    }
+  </script>
+</body>
+</html>
